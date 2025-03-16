@@ -8,9 +8,6 @@ from utils.functions import home_page, add_book, get_books, get_books_by_query, 
 from util import enforce_access_control
 
 
-
-
-
 # Call the sidebar function and get selected option
 
 enforce_access_control()

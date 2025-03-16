@@ -3,7 +3,7 @@ import os
 import base64
 from dotenv import load_dotenv
 import pandas as pd
-import asyncpg
+import psycopg2
 
 # Load environment variables (for local development)
 load_dotenv()
@@ -17,7 +17,7 @@ def get_connection():
     else:
         conn_str = os.getenv("NEON_DATABASE_URL")
     try:
-        connection = asyncpg.connect(conn_str)
+        connection = psycopg2.connect(conn_str)
         return connection
     except Exception as e:
         st.error(f"Error connecting to database: {e}")

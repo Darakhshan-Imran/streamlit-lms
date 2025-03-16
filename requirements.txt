@@ -1,4 +1,6 @@
-streamlit
-asyncpg
+streamlit>=1.28
+psycopg2-binary>=2.9.6
+psycopg2
+sqlalchemy>=2.0.0
 python-dotenv
 pandas

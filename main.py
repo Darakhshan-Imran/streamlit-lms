@@ -10,7 +10,7 @@ from util import enforce_access_control
 
 # Call the sidebar function and get selected option
 
-enforce_access_control()
+# enforce_access_control()
 choice = sidebar()
 
 if choice != "Home Page":

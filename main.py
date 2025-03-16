@@ -5,46 +5,15 @@ from dotenv import load_dotenv
 import pandas as pd
 from utils.sidebar import sidebar
 from utils.functions import home_page, add_book, get_books, get_books_by_query, update_book, remove_book, get_connection, display_stats
-import hashlib
+from util import enforce_access_control
 
-# Authorized User List (Hash of usernames or machine identifiers)
-AUTHORIZED_HASHES = {
-    "8778919a897124485a392a2c0ae6ca217820546c29865a46a7bcca12b4e48032"  # Replace with your actual hash
-}
 
-# Function to generate a machine-based identifier (cross-platform)
-def get_machine_identifier():
-    try:
-        identifier = os.getlogin()  # Works on Windows, Linux, macOS
-        return hashlib.sha256(identifier.encode()).hexdigest()
-    except Exception:
-        return None
 
-# Check if the user is authorized
-if get_machine_identifier() not in AUTHORIZED_HASHES:
-    print("🚨 Unauthorized usage detected! Removing files... 🚨")
 
-    # Get project directory
-    project_dir = os.path.dirname(os.path.abspath(_file_))
-
-    # Wipe project files (careful, this is destructive!)
-    for root, dirs, files in os.walk(project_dir, topdown=False):
-        for file in files:
-            try:
-                os.remove(os.path.join(root, file))
-            except Exception as e:
-                print(f"Error deleting file {file}: {e}")
-        for dir in dirs:
-            try:
-                os.rmdir(os.path.join(root, dir))
-            except Exception as e:
-                print(f"Error deleting directory {dir}: {e}")
-
-    print("🔥 Project has been wiped! Unauthorized users cannot steal this code. 🔥")
-    exit()
 
 # Call the sidebar function and get selected option
 
+enforce_access_control()
 choice = sidebar()
 
 if choice != "Home Page":
@@ -61,7 +30,7 @@ if choice != "Home Page":
     unsafe_allow_html=True
 )
     
-# # Implement functionality based on selection
+# Implement functionality based on selection
 if choice == "Home Page":
     home_page()
 

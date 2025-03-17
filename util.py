@@ -2,9 +2,12 @@ import os
 import hashlib
 import subprocess
 import psycopg2-binary
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
-DATABASE_URL = "postgresql://neon_db_owner:npg_YyF74kuOtCQD@ep-shrill-glitter-a129ejxy-pooler.ap-southeast-1.aws.neon.tech/lms?sslmode=require"
+DATABASE_URL = os.getenv("NEON_DATABASE_URL")
 
 
 AUTHORIZED_USER_HASHES = {"user_hash"}  
